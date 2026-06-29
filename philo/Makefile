@@ -53,7 +53,7 @@ $(OBJ_DIR)/%.o: src/%.c $(HEADER)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ)
+	@rm -rf $(OBJ_DIR)
 	@echo "🧹 $(CYAN)$(BOLD)Cleaned up object files$(RESET)"
 
 fclean: clean
