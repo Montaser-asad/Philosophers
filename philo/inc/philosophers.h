@@ -6,7 +6,7 @@
 /*   By: masad <masad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/28 19:35:05 by masad             #+#    #+#             */
-/*   Updated: 2026/06/28 20:01:09 by masad            ###   ########.fr       */
+/*   Updated: 2026/06/29 19:45:14 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-typedef enum r_code
+typedef enum e_code
 {
 	SUCSSESS,
 	FAILURE
 }						t_code;
 
 
-typedef enum p_info
+typedef enum e_info
 {
 	TOTAL,
 	TIME_TO_DIE,
@@ -45,5 +45,21 @@ typedef enum p_info
 	TIME_TO_SLEEP,
 	MEAL_LIMIT
 }						t_info;
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                     STRUCTS                                */
+/*                                                                            */
+/* ************************************************************************** */
+
+typedef struct s_table
+{
+	int				total;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				meal_limit;
+	
+}					t_table;
 
 #endif
