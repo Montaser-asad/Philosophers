@@ -30,7 +30,9 @@ HEADER		= $(INC_DIR)/philosophers.h
 # ============================================================
 
 SRC = 	src/main.c \
-		src/utils/parsing.c 
+		src/utils/parsing.c \
+		src/utils/init_structs.c \
+		src/utils/free_table.c
 
 # ============================================================
 #                        OBJECTS
@@ -61,6 +63,6 @@ fclean: clean
 	@rm -f $(NAME)
 	@echo "🧽 $(CYAN)$(BOLD)Cleaned up executable: $(NAME)$(RESET)"
 
-re: fclean All
+re: fclean all
 
-.PHONY: All clean fclean re
+.PHONY: all clean fclean re

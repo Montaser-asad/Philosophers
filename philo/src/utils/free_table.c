@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_table.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/30 18:33:02 by masad             #+#    #+#             */
-/*   Updated: 2026/06/30 20:48:59 by masad            ###   ########.fr       */
+/*   Created: 2026/06/30 20:27:48 by masad             #+#    #+#             */
+/*   Updated: 2026/06/30 20:34:00 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	main(int argc, char *argv[])
+void free_table(t_table *table)
 {
-	int 	i;
-	int 	*args;
-
-	if ((argc != 6 && argc != 5))
+	if (table)
 	{
-		perror("Invalid number of arguments");
-		exit(1);
+		if (table->philo)
+			free(table->philo);
+		free(table);
 	}
-	i = 0;
-	args = malloc(sizeof(int) * argc);
-	parse_input(argv, args);
-	init_structs(args);	
-	free(args);
-	return (0);
 }

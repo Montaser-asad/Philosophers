@@ -6,7 +6,7 @@
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/28 19:57:36 by masad             #+#    #+#             */
-/*   Updated: 2026/06/30 11:43:58 by masad            ###   ########.fr       */
+/*   Updated: 2026/06/30 20:47:36 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,20 @@ static int	ft_atoi(const char *str, int *result_out)
 	return (1);
 }
 
-void	parse_input(char *argv[], int *n)
+void	parse_input(char *argv[], int *args)
 {
 	int	i;
 
 	i = 1;
 	while (argv[i])
 	{
-		if (!ft_isnumber(argv[i]) || !ft_atoi(argv[i], n) || *n < 1)
+		if (!ft_isnumber(argv[i]) || !ft_atoi(argv[i], &args[i - 1]) || args[i
+			- 1] < 1)
 		{
 			printf("Error: Invalid input. Please provide valid numbers.\n");
+			free(args);
 			exit(EXIT_FAILURE);
 		}
-		n++;
 		i++;
 	}
 }
