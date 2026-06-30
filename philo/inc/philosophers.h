@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masad <masad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/28 19:35:05 by masad             #+#    #+#             */
-/*   Updated: 2026/06/29 19:45:14 by masad            ###   ########.fr       */
+/*   Updated: 2026/06/30 10:52:14 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,10 @@ typedef struct s_table
 	int				meal_limit;
 	
 }					t_table;
+
+
+
+void parse_input(char *argv[]);
+
 
 #endif

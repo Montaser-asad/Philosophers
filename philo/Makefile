@@ -2,9 +2,9 @@
 #                          PROJECT
 # ============================================================
 
-Name = philo
+NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -pthread
 
 # ============================================================
 #                         COLORS
@@ -29,7 +29,8 @@ HEADER		= $(INC_DIR)/philosophers.h
 #                        SOURCES
 # ============================================================
 
-SRC = src/main.c
+SRC = 	src/main.c \
+		src/utils/parsing.c 
 
 # ============================================================
 #                        OBJECTS
@@ -41,12 +42,12 @@ OBJ = $(SRC:src/%.c=$(OBJ_DIR)/%.o)
 #                        RULES
 # ============================================================
 
-All: $(Name)
+all: $(NAME)
 
 
-$(Name): $(OBJ)
-	@$(CC) $(CFLAGS) -o $(Name) $(OBJ)
-	@echo "🧠 $(CYAN)$(BOLD)Compilation complete. Executable created: $(Name)$(RESET)"
+$(NAME): $(OBJ)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+	@echo "🧠 $(CYAN)$(BOLD)Compilation complete. Executable created: $(NAME)$(RESET)"
 
 $(OBJ_DIR)/%.o: src/%.c $(HEADER)
 	@mkdir -p $(dir $@)
@@ -57,8 +58,8 @@ clean:
 	@echo "🧹 $(CYAN)$(BOLD)Cleaned up object files$(RESET)"
 
 fclean: clean
-	@rm -f $(Name)
-	@echo "🧽 $(CYAN)$(BOLD)Cleaned up executable: $(Name)$(RESET)"
+	@rm -f $(NAME)
+	@echo "🧽 $(CYAN)$(BOLD)Cleaned up executable: $(NAME)$(RESET)"
 
 re: fclean All
 

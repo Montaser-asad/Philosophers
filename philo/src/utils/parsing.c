@@ -1,0 +1,79 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/28 19:57:36 by masad             #+#    #+#             */
+/*   Updated: 2026/06/30 11:43:58 by masad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "philosophers.h"
+
+static int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+static int	ft_isnumber(const char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str || str[0] == '\0')
+		return (0);
+	if (str[i] == '+')
+		i++;
+	if (!str[i])
+		return (0);
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+static int	ft_atoi(const char *str, int *result_out)
+{
+	int	i;
+	int	result;
+
+	i = 0;
+	result = 0;
+	while (str[i] == ' ' || str[i] == '\t')
+		i++;
+	if (str[i] == '+')
+		i++;
+	while (str[i])
+	{
+		if (result > (INT_MAX - (str[i] - '0')) / 10)
+			return (0);
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	*result_out = result;
+	return (1);
+}
+
+void	parse_input(char *argv[], int *n)
+{
+	int	i;
+
+	i = 1;
+	while (argv[i])
+	{
+		if (!ft_isnumber(argv[i]) || !ft_atoi(argv[i], n) || *n < 1)
+		{
+			printf("Error: Invalid input. Please provide valid numbers.\n");
+			exit(EXIT_FAILURE);
+		}
+		n++;
+		i++;
+	}
+}
