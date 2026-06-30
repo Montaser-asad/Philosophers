@@ -6,7 +6,7 @@
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 20:08:53 by masad             #+#    #+#             */
-/*   Updated: 2026/06/30 20:53:33 by masad            ###   ########.fr       */
+/*   Updated: 2026/06/30 21:43:04 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,10 @@ static t_code	init_table(t_table *table, int *args)
 	return (init_philos(table));
 }
 
-t_code	init_structs(int *args)
+t_code	init_structs(t_table *table, int *args)
 {
-	t_table *table;
-	t_code result;
+	t_code	result;
 
-	table = malloc(sizeof(t_table));
-	if (!table)
-	{
-		perror("Failed to allocate memory for table");
-		exit(1);
-	}
 	if (!table || !args)
 		return (FAILURE);
 	result = init_table(table, args);

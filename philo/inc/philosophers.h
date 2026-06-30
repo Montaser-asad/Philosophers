@@ -6,7 +6,7 @@
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/28 19:35:05 by masad             #+#    #+#             */
-/*   Updated: 2026/06/30 20:48:13 by masad            ###   ########.fr       */
+/*   Updated: 2026/06/30 23:29:11 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_philo
 }						t_philo;
 
 void					parse_input(char *argv[], int *n);
-t_code					init_structs(int *args);
+t_code					init_structs(t_table *table, int *args);
 void					free_table(t_table *table);
+void					start_simulation(int *args);
 #endif

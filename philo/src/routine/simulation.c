@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/30 18:33:02 by masad             #+#    #+#             */
-/*   Updated: 2026/06/30 23:31:11 by masad            ###   ########.fr       */
+/*   Created: 2026/06/30 21:24:22 by masad             #+#    #+#             */
+/*   Updated: 2026/06/30 23:47:59 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	main(int argc, char *argv[])
+void	start_simulation(int *args)
 {
-	int *args;
+	t_table	*table;
 
-	if ((argc != 6 && argc != 5))
+	table = malloc(sizeof(t_table));
+	if (!table)
 	{
-		perror("Invalid number of arguments");
+		perror("Failed to allocate memory for table");
 		exit(1);
 	}
-	args = malloc(sizeof(int) * argc);
-	parse_input(argv, args);
-	start_simulation(args);
-	free(args);
-	return (0);
+	init_structs(table, args);
+	for (int i = 0; i < table->total; i++)
+		printf("Philo %d \n", table->philo[i].id);
 }

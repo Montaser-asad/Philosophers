@@ -32,7 +32,8 @@ HEADER		= $(INC_DIR)/philosophers.h
 SRC = 	src/main.c \
 		src/utils/parsing.c \
 		src/utils/init_structs.c \
-		src/utils/free_table.c
+		src/utils/free_table.c \
+		src/routine/simulation.c
 
 # ============================================================
 #                        OBJECTS
