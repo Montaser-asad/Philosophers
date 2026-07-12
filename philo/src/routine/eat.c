@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   eat.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/30 18:33:02 by masad             #+#    #+#             */
-/*   Updated: 2026/07/05 19:50:15 by masad            ###   ########.fr       */
+/*   Created: 2026/07/05 10:59:11 by masad             #+#    #+#             */
+/*   Updated: 2026/07/07 13:06:03 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static t_code	run_program(char **argv, int *args)
+t_code	philo_eat(t_philo *philo)
 {
-	if (parse_input(argv, args) == FAILURE)
-		return (FAILURE);
-	if (start_simulation(args) == FAILURE)
-		return (FAILURE);
-	return (SUCSSESS);
-}
+	t_table	*table;
+	long	time_to_eat;
 
-int	main(int argc, char *argv[])
-{
-	int		*args;
-	t_code	flag;
-
-	if (argc != 6 && argc != 5)
-	{
-		perror("Invalid number of arguments");
-		exit(FAILURE);
-	}
-	args = malloc(sizeof(int) * (5));
-	if (!args)
-		exit(FAILURE);
-	args[MEAL_LIMIT] = -1;
-	flag = run_program(argv, args);
-	free(args);
-	if (flag == FAILURE)
-		exit(FAILURE);
+	table = philo->table;
+	time_to_eat = table->time_to_eat;
+	if (!(is_simulation_running(table)))
+		return (FAILURE);
+	if (take_forks(philo) == FAILURE)
+		return (FAILURE);
+	print_status(philo, "has taken a fork");
+	set_meals_info(philo, get_time());
+	print_status(philo, "is eating");
+	smart_sleep(time_to_eat, table);
+	put_forks(philo);
 	return (SUCSSESS);
 }

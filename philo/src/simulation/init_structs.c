@@ -6,7 +6,7 @@
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 20:08:53 by masad             #+#    #+#             */
-/*   Updated: 2026/06/30 21:43:04 by masad            ###   ########.fr       */
+/*   Updated: 2026/07/05 15:46:41 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,22 @@
 
 static t_code	init_philos(t_table *table)
 {
-	int	i;
+	int		i;
+	int		num_philos;
+	t_philo	*philos;
 
-	table->philo = malloc(sizeof(t_philo) * table->total);
-	if (!table->philo)
+	num_philos = table->num_philos;
+	table->philos = malloc(sizeof(t_philo) * num_philos);
+	if (!table->philos)
 		return (FAILURE);
 	i = 0;
-	while (i < table->total)
+	philos = table->philos;
+	while (i < num_philos)
 	{
-		table->philo[i].id = i + 1;
-		table->philo[i].meal_count = 0;
-		table->philo[i].last_meal_time = 0;
-		table->philo[i].table = table;
+		philos[i].id = i + 1;
+		philos[i].meals_eaten = 0;
+		philos[i].last_meal_time = get_time();
+		philos[i].table = table;
 		i++;
 	}
 	return (SUCSSESS);
@@ -33,20 +37,24 @@ static t_code	init_philos(t_table *table)
 
 static t_code	init_table(t_table *table, int *args)
 {
-	table->total = args[TOTAL];
+	table->num_philos = args[TOTAL];
 	table->time_to_die = args[TIME_TO_DIE];
 	table->time_to_eat = args[TIME_TO_EAT];
 	table->time_to_sleep = args[TIME_TO_SLEEP];
 	table->meal_limit = args[MEAL_LIMIT];
-	return (init_philos(table));
+	table->is_dining = 1;
+	table->start_time = 0;
+	table->forks = NULL;
+	if (init_philos(table) == FAILURE)
+		return (FAILURE);
+	return (SUCSSESS);
 }
 
 t_code	init_structs(t_table *table, int *args)
 {
-	t_code	result;
-
-	if (!table || !args)
+	if (init_table(table, args) == FAILURE)
 		return (FAILURE);
-	result = init_table(table, args);
-	return (result);
+	if (init_mutexes(table) == FAILURE)
+		return (FAILURE);
+	return (SUCSSESS);
 }

@@ -30,10 +30,22 @@ HEADER		= $(INC_DIR)/philosophers.h
 # ============================================================
 
 SRC = 	src/main.c \
+		src/simulation/simulation.c \
+		src/simulation/free_table.c \
+		src/simulation/monitor.c \
+		src/simulation/init_structs.c \
+		src/simulation/init_mutexes.c \
+		src/simulation/destroy_mutexes.c \
+		src/simulation/threads_life_cycle.c \
 		src/utils/parsing.c \
-		src/utils/init_structs.c \
-		src/utils/free_table.c \
-		src/routine/simulation.c
+		src/utils/sync_utils.c \
+		src/utils/print_utils.c \
+		src/utils/time_utils.c \
+		src/routine/eat.c \
+		src/routine/forks.c \
+		src/routine/sleep.c \
+		src/routine/routine.c \
+		src/routine/think.c
 
 # ============================================================
 #                        OBJECTS

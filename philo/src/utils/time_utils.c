@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simulation.c                                       :+:      :+:    :+:   */
+/*   time_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/30 21:24:22 by masad             #+#    #+#             */
-/*   Updated: 2026/06/30 23:47:59 by masad            ###   ########.fr       */
+/*   Created: 2026/07/05 11:40:52 by masad             #+#    #+#             */
+/*   Updated: 2026/07/06 15:58:17 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	start_simulation(int *args)
+long	get_time(void)
 {
-	t_table	*table;
+	struct timeval	tv;
 
-	table = malloc(sizeof(t_table));
-	if (!table)
-	{
-		perror("Failed to allocate memory for table");
-		exit(1);
-	}
-	init_structs(table, args);
-	for (int i = 0; i < table->total; i++)
-		printf("Philo %d \n", table->philo[i].id);
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+void	smart_sleep(long duration_ms, t_table *table)
+{
+	long	start;
+
+	start = get_time();
+	while (is_simulation_running(table) && (get_time() - start) < duration_ms)
+		usleep(500);
 }

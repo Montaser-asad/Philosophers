@@ -1,43 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/30 18:33:02 by masad             #+#    #+#             */
-/*   Updated: 2026/07/05 19:50:15 by masad            ###   ########.fr       */
+/*   Created: 2026/06/30 21:24:22 by masad             #+#    #+#             */
+/*   Updated: 2026/07/07 12:49:14 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static t_code	run_program(char **argv, int *args)
+t_code	start_simulation(int *args)
 {
-	if (parse_input(argv, args) == FAILURE)
-		return (FAILURE);
-	if (start_simulation(args) == FAILURE)
-		return (FAILURE);
-	return (SUCSSESS);
-}
+	t_table *table;
 
-int	main(int argc, char *argv[])
-{
-	int		*args;
-	t_code	flag;
-
-	if (argc != 6 && argc != 5)
+	table = malloc(sizeof(t_table));
+	if (!table)
+		return (FAILURE);
+	if (init_structs(table, args) == FAILURE)
 	{
-		perror("Invalid number of arguments");
-		exit(FAILURE);
+		free_table(table);
+		return (FAILURE);
 	}
-	args = malloc(sizeof(int) * (5));
-	if (!args)
-		exit(FAILURE);
-	args[MEAL_LIMIT] = -1;
-	flag = run_program(argv, args);
-	free(args);
-	if (flag == FAILURE)
-		exit(FAILURE);
+	table->start_time = get_time();
+	if (create_philos(table) == FAILURE)
+	{
+		destroy_mutexes(table);
+		free_table(table);
+		return (FAILURE);
+	}
+	monitor(table);
+	join_philos(table);
+	destroy_mutexes(table);
+	free_table(table);
 	return (SUCSSESS);
 }
