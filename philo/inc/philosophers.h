@@ -6,7 +6,7 @@
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/28 19:35:05 by masad             #+#    #+#             */
-/*   Updated: 2026/07/07 13:27:44 by masad            ###   ########.fr       */
+/*   Updated: 2026/07/14 10:32:05 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct s_philo
 
 /* ************************************************************************** */
 /*                                                                            */
-/*                               Prototype  			                       */
+/*                               Prototype  				                    */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,5 @@ t_code					philo_sleep(t_philo *philo);
 t_code					philo_think(t_philo *philo);
 t_code					take_forks(t_philo *philo);
 void					put_forks(t_philo *philo);
+int						single_philo(t_philo *philo);
 #endif
