@@ -15,9 +15,7 @@
 t_code	philo_think(t_philo *philo)
 {
 	t_table *table;
-	long time_to_think;
 
-	time_to_think = 0;
 	table = philo->table;
 	if (!(is_simulation_running(table)))
 		return (FAILURE);

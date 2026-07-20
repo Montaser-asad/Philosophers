@@ -22,9 +22,19 @@ long	get_time(void)
 
 void	smart_sleep(long duration_ms, t_table *table)
 {
-	long	start;
+	struct timeval	start;
+	struct timeval	now;
+	long			elapsed_us;
 
-	start = get_time();
-	while (is_simulation_running(table) && (get_time() - start) < duration_ms)
-		usleep(500);
+	gettimeofday(&start, NULL);
+	while (is_simulation_running(table))
+	{
+		gettimeofday(&now, NULL);
+		elapsed_us = (now.tv_sec - start.tv_sec) * 1000000
+			+ (now.tv_usec - start.tv_usec);
+		if (elapsed_us >= duration_ms * 1000)
+			break;
+		if ((duration_ms * 1000 - elapsed_us) > 10000)
+			usleep(5000);
+	}
 }

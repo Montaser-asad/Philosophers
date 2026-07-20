@@ -19,8 +19,6 @@ void	*philo_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	table = philo->table;
-	if (philo->id % 2 == 0)
-		usleep(100);
 	if (single_philo(philo))
 		return (NULL);
 	while (is_simulation_running(table))

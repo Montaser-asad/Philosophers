@@ -6,7 +6,7 @@
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 11:52:46 by masad             #+#    #+#             */
-/*   Updated: 2026/07/20 10:41:03 by masad            ###   ########.fr       */
+/*   Updated: 2026/07/20 15:54:52 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,10 @@ t_code	take_forks(t_philo *philo)
 
 	table = philo->table;
 	get_forks(philo, &left_fork, &right_fork);
-	if (philo->id % 2 == 1)
-		return (lock_forks(table, right_fork, left_fork, philo));
-	return (lock_forks(table, left_fork, right_fork, philo));
+	if (philo->id % 2 == 0)
+		return (lock_forks(table, left_fork, right_fork, philo));
+	return (lock_forks(table, right_fork, left_fork, philo));
 }
-
-// 5%2 = 1
 
 int	single_philo(t_philo *philo)
 {
