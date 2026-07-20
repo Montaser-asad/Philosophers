@@ -34,7 +34,7 @@
 
 typedef enum e_code
 {
-	SUCSSESS,
+	SUCCESS,
 	FAILURE
 }						t_code;
 

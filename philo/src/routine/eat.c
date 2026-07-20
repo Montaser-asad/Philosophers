@@ -6,7 +6,7 @@
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 10:59:11 by masad             #+#    #+#             */
-/*   Updated: 2026/07/07 13:06:03 by masad            ###   ########.fr       */
+/*   Updated: 2026/07/20 10:18:15 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ t_code	philo_eat(t_philo *philo)
 		return (FAILURE);
 	if (take_forks(philo) == FAILURE)
 		return (FAILURE);
-	print_status(philo, "has taken a fork");
 	set_meals_info(philo, get_time());
 	print_status(philo, "is eating");
 	smart_sleep(time_to_eat, table);
 	put_forks(philo);
-	return (SUCSSESS);
+	return (SUCCESS);
 }

@@ -35,5 +35,5 @@ t_code	start_simulation(int *args)
 	join_philos(table);
 	destroy_mutexes(table);
 	free_table(table);
-	return (SUCSSESS);
+	return (SUCCESS);
 }

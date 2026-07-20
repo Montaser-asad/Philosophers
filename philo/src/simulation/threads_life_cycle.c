@@ -58,5 +58,5 @@ t_code	create_philos(t_table *table)
 		}
 		i++;
 	}
-	return (SUCSSESS);
+	return (SUCCESS);
 }

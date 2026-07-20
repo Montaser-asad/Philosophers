@@ -6,7 +6,7 @@
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 19:56:42 by masad             #+#    #+#             */
-/*   Updated: 2026/07/07 13:14:20 by masad            ###   ########.fr       */
+/*   Updated: 2026/07/20 10:58:37 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_code	check_meals_done(t_philo *philo)
 		return (FAILURE);
 	if (get_meals_eaten(philo) < meal_limit)
 		return (FAILURE);
-	return (SUCSSESS);
+	return (SUCCESS);
 }
 
 static t_code	all_ate_enough(t_table *table)
@@ -41,7 +41,7 @@ static t_code	all_ate_enough(t_table *table)
 			return (FAILURE);
 		i++;
 	}
-	return (SUCSSESS);
+	return (SUCCESS);
 }
 
 static t_code	check_death(t_philo *philo)
@@ -55,9 +55,9 @@ static t_code	check_death(t_philo *philo)
 	time_to_die = table->time_to_die;
 	last_meal_time = get_last_meal_time(philo);
 	current_time = get_time();
-	if ((current_time - last_meal_time) < time_to_die)
+	if ((current_time - last_meal_time) <= time_to_die)
 		return (FAILURE);
-	return (SUCSSESS);
+	return (SUCCESS);
 }
 
 void	monitor(t_table *table)
@@ -71,7 +71,7 @@ void	monitor(t_table *table)
 		i = 0;
 		while (i < table->num_philos)
 		{
-			if (check_death(&philos[i]) == SUCSSESS)
+			if (check_death(&philos[i]) == SUCCESS)
 			{
 				print_status(&philos[i], "died");
 				stop_simulation(table);
@@ -79,11 +79,11 @@ void	monitor(t_table *table)
 			}
 			i++;
 		}
-		if (all_ate_enough(table) == SUCSSESS)
+		if (all_ate_enough(table) == SUCCESS)
 		{
 			stop_simulation(table);
 			return ;
 		}
-		usleep(1000);
+		usleep(500);
 	}
 }

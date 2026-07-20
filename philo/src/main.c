@@ -18,7 +18,7 @@ static t_code	run_program(char **argv, int *args)
 		return (FAILURE);
 	if (start_simulation(args) == FAILURE)
 		return (FAILURE);
-	return (SUCSSESS);
+	return (SUCCESS);
 }
 
 int	main(int argc, char *argv[])
@@ -28,16 +28,16 @@ int	main(int argc, char *argv[])
 
 	if (argc != 6 && argc != 5)
 	{
-		perror("Invalid number of arguments");
-		exit(FAILURE);
+		write(2, "Invalid number of arguments\n", 28);
+		exit(EXIT_FAILURE);
 	}
 	args = malloc(sizeof(int) * (5));
 	if (!args)
-		exit(FAILURE);
+		exit(EXIT_FAILURE);
 	args[MEAL_LIMIT] = -1;
 	flag = run_program(argv, args);
 	free(args);
 	if (flag == FAILURE)
-		exit(FAILURE);
-	return (SUCSSESS);
+		exit(EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

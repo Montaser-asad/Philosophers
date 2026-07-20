@@ -6,7 +6,7 @@
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 10:59:15 by masad             #+#    #+#             */
-/*   Updated: 2026/07/14 10:35:25 by masad            ###   ########.fr       */
+/*   Updated: 2026/07/20 10:49:08 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*philo_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	table = philo->table;
+	if (philo->id % 2 == 0)
+		usleep(100);
 	if (single_philo(philo))
 		return (NULL);
 	while (is_simulation_running(table))

@@ -6,7 +6,7 @@
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 11:52:46 by masad             #+#    #+#             */
-/*   Updated: 2026/07/14 10:41:19 by masad            ###   ########.fr       */
+/*   Updated: 2026/07/20 10:41:03 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	get_forks(t_philo *philo, pthread_mutex_t **left,
 }
 
 static t_code	lock_forks(t_table *table, pthread_mutex_t *first,
-		pthread_mutex_t *second)
+		pthread_mutex_t *second, t_philo *philo)
 {
 	pthread_mutex_lock(first);
 	if (!is_simulation_running(table))
@@ -36,6 +36,7 @@ static t_code	lock_forks(t_table *table, pthread_mutex_t *first,
 		pthread_mutex_unlock(first);
 		return (FAILURE);
 	}
+	print_status(philo, "has taken a fork");
 	pthread_mutex_lock(second);
 	if (!is_simulation_running(table))
 	{
@@ -43,7 +44,8 @@ static t_code	lock_forks(t_table *table, pthread_mutex_t *first,
 		pthread_mutex_unlock(first);
 		return (FAILURE);
 	}
-	return (SUCSSESS);
+	print_status(philo, "has taken a fork");
+	return (SUCCESS);
 }
 
 t_code	take_forks(t_philo *philo)
@@ -55,9 +57,11 @@ t_code	take_forks(t_philo *philo)
 	table = philo->table;
 	get_forks(philo, &left_fork, &right_fork);
 	if (philo->id % 2 == 1)
-		return (lock_forks(table, right_fork, left_fork));
-	return (lock_forks(table, left_fork, right_fork));
+		return (lock_forks(table, right_fork, left_fork, philo));
+	return (lock_forks(table, left_fork, right_fork, philo));
 }
+
+// 5%2 = 1
 
 int	single_philo(t_philo *philo)
 {
@@ -70,6 +74,7 @@ int	single_philo(t_philo *philo)
 	{
 		pthread_mutex_lock(right_fork);
 		print_status(philo, "has taken a fork");
+		set_meals_info(philo, get_time());
 		smart_sleep(table->time_to_die, table);
 		pthread_mutex_unlock(right_fork);
 		return (1);

@@ -74,5 +74,5 @@ t_code	parse_input(char *argv[], int *args)
 			return (FAILURE);
 		i++;
 	}
-	return (SUCSSESS);
+	return (SUCCESS);
 }

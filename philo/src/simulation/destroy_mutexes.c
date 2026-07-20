@@ -31,6 +31,8 @@ void	destroy_meals_locks(t_table *table, int idx)
 	int				i;
 	pthread_mutex_t	*meal_lock;
 
+	if (!table->philos)
+		return ;
 	i = 0;
 	while (i < idx)
 	{

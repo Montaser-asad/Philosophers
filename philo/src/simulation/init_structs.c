@@ -32,7 +32,7 @@ static t_code	init_philos(t_table *table)
 		philos[i].table = table;
 		i++;
 	}
-	return (SUCSSESS);
+	return (SUCCESS);
 }
 
 static t_code	init_table(t_table *table, int *args)
@@ -47,7 +47,7 @@ static t_code	init_table(t_table *table, int *args)
 	table->forks = NULL;
 	if (init_philos(table) == FAILURE)
 		return (FAILURE);
-	return (SUCSSESS);
+	return (SUCCESS);
 }
 
 t_code	init_structs(t_table *table, int *args)
@@ -56,5 +56,5 @@ t_code	init_structs(t_table *table, int *args)
 		return (FAILURE);
 	if (init_mutexes(table) == FAILURE)
 		return (FAILURE);
-	return (SUCSSESS);
+	return (SUCCESS);
 }

@@ -32,11 +32,12 @@ static t_code	init_forks(t_table *table)
 		{
 			destroy_forks(table, i);
 			free(table->forks);
+			table->forks = NULL;
 			return (FAILURE);
 		}
 		i++;
 	}
-	return (SUCSSESS);
+	return (SUCCESS);
 }
 
 static t_code	init_meals_locks(t_table *table)
@@ -57,7 +58,7 @@ static t_code	init_meals_locks(t_table *table)
 		}
 		i++;
 	}
-	return (SUCSSESS);
+	return (SUCCESS);
 }
 
 static t_code	init_dining_lock(t_table *table)
@@ -67,7 +68,7 @@ static t_code	init_dining_lock(t_table *table)
 	is_dining_lock = &(table->is_dining_lock);
 	if (pthread_mutex_init(is_dining_lock, NULL))
 		return (FAILURE);
-	return (SUCSSESS);
+	return (SUCCESS);
 }
 
 static t_code	init_print_lock(t_table *table)
@@ -77,7 +78,7 @@ static t_code	init_print_lock(t_table *table)
 	print_lock = &(table->print_lock);
 	if (pthread_mutex_init(print_lock, NULL))
 		return (FAILURE);
-	return (SUCSSESS);
+	return (SUCCESS);
 }
 
 t_code	init_mutexes(t_table *table)
@@ -102,5 +103,5 @@ t_code	init_mutexes(t_table *table)
 		destroy_meals_locks(table, table->num_philos);
 		return (FAILURE);
 	}
-	return (SUCSSESS);
+	return (SUCCESS);
 }
