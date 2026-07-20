@@ -6,7 +6,7 @@
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 11:40:52 by masad             #+#    #+#             */
-/*   Updated: 2026/07/06 15:58:17 by masad            ###   ########.fr       */
+/*   Updated: 2026/07/20 18:24:47 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,13 @@ long	get_time(void)
 
 void	smart_sleep(long duration_ms, t_table *table)
 {
-	struct timeval	start;
-	struct timeval	now;
-	long			elapsed_us;
+	long	start_time;
 
-	gettimeofday(&start, NULL);
+	start_time = get_time();
 	while (is_simulation_running(table))
 	{
-		gettimeofday(&now, NULL);
-		elapsed_us = (now.tv_sec - start.tv_sec) * 1000000
-			+ (now.tv_usec - start.tv_usec);
-		if (elapsed_us >= duration_ms * 1000)
-			break;
-		if ((duration_ms * 1000 - elapsed_us) > 10000)
-			usleep(5000);
+		if (get_time() - start_time >= duration_ms)
+			break ;
+		usleep(500);
 	}
 }

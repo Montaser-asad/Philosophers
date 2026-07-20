@@ -6,7 +6,7 @@
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 19:56:42 by masad             #+#    #+#             */
-/*   Updated: 2026/07/20 10:58:37 by masad            ###   ########.fr       */
+/*   Updated: 2026/07/20 19:10:49 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ static t_code	check_death(t_philo *philo)
 	time_to_die = table->time_to_die;
 	last_meal_time = get_last_meal_time(philo);
 	current_time = get_time();
-	if ((current_time - last_meal_time) <= time_to_die)
-		return (FAILURE);
-	return (SUCCESS);
+	if ((current_time - last_meal_time) > time_to_die)
+		return (SUCCESS);
+	return (FAILURE);
 }
 
 void	monitor(t_table *table)
