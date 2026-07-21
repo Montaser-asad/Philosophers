@@ -6,7 +6,7 @@
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 16:52:08 by masad             #+#    #+#             */
-/*   Updated: 2026/07/07 12:47:32 by masad            ###   ########.fr       */
+/*   Updated: 2026/07/21 10:39:20 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	join_philos(t_table *table)
 
 t_code	create_philos(t_table *table)
 {
-	int i;
-	int num_philos;
-	t_philo *philos;
+	int		i;
+	int		num_philos;
+	t_philo	*philos;
 
 	i = 0;
 	philos = table->philos;

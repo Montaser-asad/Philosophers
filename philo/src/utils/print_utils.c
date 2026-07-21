@@ -6,7 +6,7 @@
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 12:58:30 by masad             #+#    #+#             */
-/*   Updated: 2026/07/07 12:58:46 by masad            ###   ########.fr       */
+/*   Updated: 2026/07/21 10:39:26 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	print_status(t_philo *philo, char *status)
 {
-	t_table *table;
-	long timestamp;
+	t_table	*table;
+	long	timestamp;
 
 	table = philo->table;
 	pthread_mutex_lock(&table->print_lock);

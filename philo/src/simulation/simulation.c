@@ -6,7 +6,7 @@
 /*   By: masad <masad@student.42amman.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 21:24:22 by masad             #+#    #+#             */
-/*   Updated: 2026/07/07 12:49:14 by masad            ###   ########.fr       */
+/*   Updated: 2026/07/21 10:39:15 by masad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_code	start_simulation(int *args)
 {
-	t_table *table;
+	t_table	*table;
 
 	table = malloc(sizeof(t_table));
 	if (!table)
